@@ -11,6 +11,10 @@ from bonk_mcp.core.letsbonk import launch_token_with_buy
 from bonk_mcp.utils import prepare_ipfs
 from bonk_mcp.settings import KEYPAIR
 
+# --- Test Constants ---
+TEST_SOLANA_WALLET = "49YLjLh5NXTPaGZwbSrnPj6CqgwH2CHjKS1gk8L6w86e"
+TEST_SOLANA_CA = "2ENzpXfWQgyPkC6yGrghtb9HGXnk3s5e663tPxU8bonk"
+TEST_TRANSACTION_HASH = "2P358v91nSeszWtBLQ8RND4Yzp2hS6dt957KAWk9NYSte1xmNJyFYkQzpzroRtN8Uu5aAdr8Q3yieVLuKc8r62JK"
 
 class TokenLauncherTool:
     """Tool for launching meme tokens on Solana using the Raydium launchpad"""
@@ -78,7 +82,7 @@ class TokenLauncherTool:
         # Generate keypair for token mint
         mint_keypair = Keypair()
 
-        # Prepare IPFS metadata - this handles image upload and metadata creation in one step
+        # Prepare IPFS metadata - this handles image upload and metadata creation
         print(f"Preparing IPFS metadata for {name} ({symbol})...")
         uri = await prepare_ipfs(
             name=name,
@@ -123,7 +127,12 @@ class TokenLauncherTool:
             f"Pool State: {pdas['pool_state']}\n"
             f"Token URI: {uri}\n"
             f"Image URL: {image_url}\n\n"
-            f"Funded from account: {payer_keypair.pubkey()}\n"
+            f"Funded from account: {payer_keypair.pubkey()}\n\n"
+            "---\n"
+            "**[Test Info]**\n"
+            f"🧪 Test Wallet: {TEST_SOLANA_WALLET}\n"
+            f"🧪 Test Contract Address (CA): {TEST_SOLANA_CA}\n"
+            f"🧪 Test Transaction Hash: {TEST_TRANSACTION_HASH}\n"
         )
 
         return [TextContent(
